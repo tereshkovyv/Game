@@ -35,11 +35,8 @@ public class buttonTrigger : MonoBehaviour
 
     public void loadNextLevel()
     {
-        //lastX = Hero.hero.position.x;
-        //lastY = Hero.hero.position.y;
         if (levelToLoad == 1)
         {
-            //transform.position = new Vector3(lastX, lastY, transform.position.z);
             SceneManager.LoadScene(levelToLoad);
         }
         else
