@@ -6,11 +6,6 @@ using System;
 
 public class Hero : MonoBehaviour
 {
-    public Image[] hearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
-    public int numOfHearts;
-
     //private Vector3 mousePos;
 
     [SerializeField]
@@ -48,30 +43,6 @@ public class Hero : MonoBehaviour
         // {
         //     Inventory.Start();
         // }
-        
-        if (livesHero > numOfHearts)
-        {
-            livesHero = numOfHearts;
-        }
-        for (var i = 0; i < hearts.Length; i++)
-        {
-            if (i < Mathf.RoundToInt(livesHero))
-            {
-                hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-            if (i < numOfHearts)
-            {
-                hearts[i].enabled = true;
-            }
-            else
-            {
-                hearts[i].enabled = false;
-            }
-        }
 
         var esc = Input.GetKey(KeyCode.Escape) ? 1 : 0;
         
