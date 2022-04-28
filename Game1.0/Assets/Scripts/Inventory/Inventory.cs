@@ -16,7 +16,7 @@ public class Inventory : MonoBehaviour
 
     public void Chest()
     {
-        var space = Input.GetKey(KeyCode.Space) ? 1 : 0;
+        //var space = Input.GetKey(KeyCode.Space) ? 1 : 0;
         if (inventoryOpen == false)
         {
             inventoryOpen = true;

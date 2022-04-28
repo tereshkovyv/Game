@@ -12,7 +12,7 @@ public class Monster1 : MonoBehaviour
 
         var widthMonster = 0.75;
         var hero = GameObject.Find("Hero").transform;
-        Hero.TakeDamadge(widthMonster, monster1);
+        Hero.TakeDamage(widthMonster, monster1);
 
 
 

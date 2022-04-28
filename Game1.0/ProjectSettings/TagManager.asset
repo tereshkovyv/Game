@@ -6,6 +6,9 @@ TagManager:
   tags:
   - subject
   - Camera2
+  - inventory
+  - prefab
+  - Gun
   layers:
   - Default
   - TransparentFX

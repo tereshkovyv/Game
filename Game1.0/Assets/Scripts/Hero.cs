@@ -11,57 +11,44 @@ public class Hero : MonoBehaviour
     public Sprite emptyHeart;
     public int numOfHearts;
 
-    private Vector3 mousePos;
+    //private Vector3 mousePos;
 
-    //Hero hero = new Hero();
     [SerializeField]
     private static float acceleration = 0.5f;
     internal static Rigidbody2D hero;
     private static int livesHero = 10;
-    //public VectorValue pos;
-    //private int playerRotation = 1;
-    //public static Transform heroObject = GameObject.Find("Hero").transform;
 
-    //private Animator anim;
+    private Animator anim;
 
     //public int LivesHero { get => livesHero; set => livesHero = value; }
 
     void Start()
     {
-        //anim = GetComponent<Rigidbody2D>();
-        DontDestroyOnLoad(this);
+        anim = GetComponent<Animator>();
         hero = GetComponent<Rigidbody2D>();
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        // Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }   
+
+    void Awake()
+    {
+        GameObject[] obj = GameObject.FindGameObjectsWithTag("Player");
+        if(obj.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
     {
-        //MoveHero();
-      
+        MoveNext();
 
-        var w = Input.GetKey(KeyCode.W) ? 1 : 0;
-        var s = Input.GetKey(KeyCode.S) ? 1 : 0;
-        var a = Input.GetKey(KeyCode.A) ? 1 : 0;
-        var d = Input.GetKey(KeyCode.D) ? 1 : 0;
-        var shift = Input.GetKey(KeyCode.LeftShift) ? 1 : 0;
-        // var space = Input.GetKey(KeyCode.Space) ? 1 : 0;
-
-        if (shift == 1)
-        {
-            shift = 5;
-        }
-        else
-        {
-            shift = 1;
-        }
+        //var space = Input.GetKey(KeyCode.Space) ? 1 : 0;
         // if(space == 1)
         // {
-        //     Inventory.Chest();
+        //     Inventory.Start();
         // }
-
-        var movementVector = new Vector2(d - a, w - s);
-        hero.velocity = movementVector * acceleration * shift;
-
+        
         if (livesHero > numOfHearts)
         {
             livesHero = numOfHearts;
@@ -85,6 +72,7 @@ public class Hero : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
         var esc = Input.GetKey(KeyCode.Escape) ? 1 : 0;
         
         if (esc != 0)
@@ -93,7 +81,7 @@ public class Hero : MonoBehaviour
         }
     }
 
-    public static void TakeDamadge(double widthMonster, Transform monster)
+    public static void TakeDamage(double widthMonster, Transform monster)
     {
         if ((Math.Abs(hero.position.x - monster.position.x) <= widthMonster) && monster != null)
         {
@@ -109,6 +97,54 @@ public class Hero : MonoBehaviour
         }
     }
 
+    private void MoveNext()
+    {
+        var w = Input.GetKey(KeyCode.W) ? 1 : 0;
+        var s = Input.GetKey(KeyCode.S) ? 1 : 0;
+        var a = Input.GetKey(KeyCode.A) ? 1 : 0;
+        var d = Input.GetKey(KeyCode.D) ? 1 : 0;
+        var shift = Input.GetKey(KeyCode.LeftShift) ? 1 : 0;
+
+        GetAnimHero(w,s,a,d);
+        
+        if (shift == 1)
+        {
+            shift = 5;
+        }
+        else
+        {
+            shift = 1;
+        }
+
+        var movementVector = new Vector2(d - a, w - s);
+        hero.velocity = movementVector * acceleration * shift;
+    }
+
+    private void GetAnimHero(int w, int s, int a, int d)
+    {
+        var heroLookRight = GetComponent<SpriteRenderer>();
+
+        if(d == 1)
+        {
+            heroLookRight.flipX = false;
+            anim.SetBool("IsRunning", true);
+        }
+        else if(a == 1)
+        {
+            heroLookRight.flipX = true;
+            anim.SetBool("IsRunning", true);
+        }
+        else if (w == 1)
+        {
+            anim.SetBool("IsMoveFront", true);
+        }
+        else
+        {
+            anim.SetBool("IsMoveFront", false);
+            anim.SetBool("IsRunning", false);
+        }
+    }
+
     // public static void GetMouseClick()
     // {
     //     if (Input.GetMouseButtonDown(0))
@@ -117,54 +153,3 @@ public class Hero : MonoBehaviour
     //     }
     // }
 }
-
-//����������� �� �����
-//void OnMouseDrag()
-//{
-//    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//    mousePos.x = mousePos.x > 332f ? 332f : mousePos.x;
-//    mousePos.x = mousePos.x < -332f ? -332f : mousePos.x;
-//    //player.up = Camera.main.ScreenToWorldPoint (Input.mousePosition.x);
-//    hero.position = Vector2.MoveTowards(hero.position,
-//        new Vector2(mousePos.x, hero.position.y),
-//        acceleration * Time.deltaTime);
-
-
-//}
-
-// ������ ������� ���������� �� ����� 
-//private Vector3 TPosition;
-//private bool isMoving = false;
-//� ������ �����
-//transform.position = pos.initialValue;
-//������ ������ 
-//void TriggerPosition()
-//{
-
-//    TPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-//    TPosition.z = transform.position.z;
-
-//    isMoving = true;
-//}
-
-//void ItsMove()
-//{
-//    transform.rotation = Quaternion.LookRotation(Vector3.forward, TPosition);
-//    transform.position = Vector3.MoveTowards(transform.position, TPosition, acceleration * Time.deltaTime);
-
-//    if (transform.position == TPosition)
-//    {
-//        isMoving = false;
-//    }
-//}
-// ����� ������
-//if (Input.GetMouseButton(0))
-//{
-//    TriggerPosition();
-//}
-
-//if (isMoving)
-//{
-//    ItsMove();
-//}
-

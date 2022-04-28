@@ -11,6 +11,6 @@ public class Monster3 : MonoBehaviour
         var widthMonster = 0.75;
         var hero = GameObject.Find("Hero").transform;
 
-        Hero.TakeDamadge(widthMonster, monster3);
+        Hero.TakeDamage(widthMonster, monster3);
     }
 }
