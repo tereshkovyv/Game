@@ -36,8 +36,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Monsters\Monster2.cs" />
+     <Compile Include="Assets\Scripts\Dialogues\DialogueAnimator.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Dialogues\Dialogue.cs" />
      <Compile Include="Assets\Scripts\Monsters\Monster1.cs" />
      <Compile Include="Assets\Scripts\Cameras\CameraStreet2.cs" />
      <Compile Include="Assets\Scripts\LocationSwitch.cs" />
@@ -46,12 +47,12 @@
      <Compile Include="Assets\Scripts\Hero.cs" />
      <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
      <Compile Include="Assets\Scripts\Manager.cs" />
+     <Compile Include="Assets\Scripts\Dialogues\DialogueTrigger.cs" />
      <Compile Include="Assets\Scripts\Cameras\CameraFollows.cs" />
      <Compile Include="Assets\Scripts\LockDeleteObject\LockDestroyInventory.cs" />
+     <Compile Include="Assets\Scripts\Dialogues\DialogueManager.cs" />
      <Compile Include="Assets\Scripts\Inventory\Slot.cs" />
      <Compile Include="Assets\Scripts\Inventory\Drop.cs" />
-     <Compile Include="Assets\Scripts\VectorValue.cs" />
-     <Compile Include="Assets\Scripts\Monsters\Monster3.cs" />
      <Compile Include="Assets\Scripts\buttonTrigger.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Unity\UnityEditor\2020.3.30f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

@@ -9,6 +9,7 @@ TagManager:
   - inventory
   - prefab
   - Gun
+  - GunButton
   layers:
   - Default
   - TransparentFX

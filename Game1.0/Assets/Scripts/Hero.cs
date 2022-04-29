@@ -11,7 +11,7 @@ public class Hero : MonoBehaviour
     [SerializeField]
     private static float acceleration = 0.5f;
     internal static Rigidbody2D hero;
-    private static int livesHero = 10;
+    private int livesHero = 10;
 
     private Animator anim;
 
@@ -26,8 +26,8 @@ public class Hero : MonoBehaviour
 
     void Awake()
     {
-        GameObject[] obj = GameObject.FindGameObjectsWithTag("Player");
-        if(obj.Length > 1)
+        var countHero = GameObject.FindGameObjectsWithTag("Player");
+        if(countHero.Length > 1)
         {
             Destroy(this.gameObject);
         }
@@ -49,22 +49,6 @@ public class Hero : MonoBehaviour
         if (esc != 0)
         {
             Manager.ExitGame();
-        }
-    }
-
-    public static void TakeDamage(double widthMonster, Transform monster)
-    {
-        if ((Math.Abs(hero.position.x - monster.position.x) <= widthMonster) && monster != null)
-        {
-            Destroy(monster.gameObject);
-            livesHero -= 4;
-
-            if(livesHero <= 0)
-            {
-                Debug.Log(livesHero);
-                Destroy(hero.gameObject);
-                Manager.ExitGame();
-            }
         }
     }
 
@@ -115,6 +99,21 @@ public class Hero : MonoBehaviour
             anim.SetBool("IsRunning", false);
         }
     }
+
+    // public static void TakeDamage(double widthMonster, Transform monster)
+    // {
+    //     if ((Math.Abs(hero.position.x - monster.position.x) <= widthMonster) && monster != null)
+    //     {
+    //         Destroy(monster.gameObject);
+    //         livesHero -= 4;
+
+    //         if(livesHero <= 0)
+    //         {
+    //             Destroy(hero.gameObject);
+    //             Manager.ExitGame();
+    //         }
+    //     }
+    // }
 
     // public static void GetMouseClick()
     // {

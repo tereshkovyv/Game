@@ -8,9 +8,6 @@ public class Manager : MonoBehaviour
    private Animator anim;
    public int levelToLoad;
 
-   public Vector3 position;
-   //public VectorValue playerStorage;
-
    //private void Start()
    //{
    //    anim = GetComponent<Animator>();
@@ -23,7 +20,6 @@ public class Manager : MonoBehaviour
 
    public void ChangeLevel()
    {
-       //playerStorage.initialValue = position;
        SceneManager.LoadScene(levelToLoad);
    }
 
